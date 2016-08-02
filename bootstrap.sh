@@ -142,6 +142,14 @@ echo "###############################"
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
+# Pfostfix Installation
+echo "###############################"
+echo "##### INSTALLING POSTFIX #####"
+echo "###############################"
+debconf-set-selections <<< "postfix postfix/mailname string site.dev"
+debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+apt-get install -y postfix
+
 # Set Ownership and Permissions
 echo "#############################################"
 echo "##### SETTING OWNERSHIP AND PERMISSIONS #####"
