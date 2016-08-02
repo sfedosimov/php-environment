@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# This script can be used to perform any sort of command line actions to setup your box. 
-# This includes installing software, importing databases, enabling new sites, pulling from 
-# remote servers, etc. 
+# This script can be used to perform any sort of command line actions to setup your box.
+# This includes installing software, importing databases, enabling new sites, pulling from
+# remote servers, etc.
 
 # update
 echo "########################"
@@ -35,7 +35,7 @@ echo "
 echo "#######################################"
 echo "##### ENABLING APACHE MOD-REWRITE #####"
 echo "#######################################"
-a2enmod rewrite 
+a2enmod rewrite
 
 # append AllowOverride to Apache Config File
 echo "#######################################"
@@ -47,7 +47,7 @@ echo "
         DocumentRoot /var/www/html/site
 		ServerName site.dev
 		ServerAlias www.site.dev
-		
+
 		<Directory '/var/www/html/site'>
 			Options Indexes FollowSymLinks MultiViews
 			AllowOverride All
@@ -57,13 +57,13 @@ echo "
 </VirtualHost>
 " > /etc/apache2/sites-available/site.conf
 
-echo "ServerName localhost" >> /etc/apache2/apache2.conf 
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Enabling Site
 echo "##################################"
 echo "######### Enabling Site ##########"
 echo "##################################"
-a2ensite magento2.conf
+a2ensite site.conf
 
 # Setting Locales
 echo "###########################"
