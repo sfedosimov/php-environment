@@ -4,6 +4,14 @@
 # This includes installing software, importing databases, enabling new sites, pulling from
 # remote servers, etc.
 
+# Edit PS1
+echo "########################"
+echo "####### Edit PS1 #######"
+echo "########################"
+echo '
+PS1="\[\033[38;5;130m\]\u\[$(tput sgr0)\]\[\033[38;5;22m\]@\[$(tput sgr0)\]\[\033[38;5;130m\]\h\[$(tput sgr0)\]\[\033[38;5;94m\]:\[$(tput sgr0)\]\[\033[38;5;24m\][\w]:\[$(tput sgr0)\]\[\033[38;5;8m\] \[$(tput sgr0)\]"
+' >> /home/vagrant/.bashrc
+
 # update
 echo "########################"
 echo "##### UPDATING APT #####"
@@ -144,7 +152,7 @@ mv composer.phar /usr/local/bin/composer
 
 # Pfostfix Installation
 echo "###############################"
-echo "##### INSTALLING POSTFIX #####"
+echo "##### INSTALLING POSTFIX ######"
 echo "###############################"
 debconf-set-selections <<< "postfix postfix/mailname string site.dev"
 debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
