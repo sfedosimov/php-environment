@@ -12,7 +12,14 @@ echo '
 PS1="\[\033[38;5;130m\]\u\[$(tput sgr0)\]\[\033[38;5;22m\]@\[$(tput sgr0)\]\[\033[38;5;130m\]\h\[$(tput sgr0)\]\[\033[38;5;94m\]:\[$(tput sgr0)\]\[\033[38;5;24m\][\w]:\[$(tput sgr0)\]\[\033[38;5;8m\] \[$(tput sgr0)\]"
 ' >> /home/vagrant/.bashrc
 
-# update
+# set php 5.6 ppa
+echo "###########################"
+echo "##### SET PHP 5.6 PPA #####"
+echo "###########################"
+apt-get install -y python-software-properties
+add-apt-repository -y ppa:ondrej/php5-5.6
+
+# updates
 echo "########################"
 echo "##### UPDATING APT #####"
 echo "########################"
@@ -29,15 +36,6 @@ echo "#######################################"
 echo "####### SITE FOLDER PERMISSIONS #######"
 echo "#######################################"
 chmod 0777 -R /var/www/html/site
-
-# Creating index.php
-echo "#######################################"
-echo "######### CREATING index.php ##########"
-echo "#######################################"
-echo "
-<?php
-    phpinfo();
-" > /var/www/html/site/index.php
 
 # enable modrewrite
 echo "#######################################"
