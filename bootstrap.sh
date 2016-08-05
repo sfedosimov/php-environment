@@ -85,6 +85,12 @@ echo "############################"
 export DEBIAN_FRONTEND=noninteractive
 apt-get -q -y install mysql-server-5.6 mysql-client-5.6
 
+# Config mysql
+echo "############################"
+echo "##### CONFIGURE MYSQL ######"
+echo "############################"
+echo "wait_timeout = 600" >> /etc/mysql/my.cnf
+
 # Create Database instance
 echo "#############################"
 echo "##### CREATING DATABASE #####"
@@ -96,6 +102,13 @@ echo "##########################"
 echo "##### INSTALLING PHP #####"
 echo "##########################"
 apt-get -y install php5
+
+# Config php
+echo "############################"
+echo "##### CONFIGURE PHP ######"
+echo "############################"
+echo "memory_limit = 1024M" >> /etc/php5/apache2/php.ini
+echo "max_execution_time = 600" >> /etc/php5/apache2/php.ini
 
 # Install Required PHP extensions
 echo "#####################################"
