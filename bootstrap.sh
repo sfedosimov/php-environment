@@ -89,9 +89,7 @@ echo "
         <Directory /usr/lib/cgi-bin>
                 SSLOptions +StdEnvVars
         </Directory>
-        BrowserMatch \"MSIE [2-6]\" \
-                        nokeepalive ssl-unclean-shutdown \
-                        downgrade-1.0 force-response-1.0
+        BrowserMatch \"MSIE [2-6]\" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
         BrowserMatch \"MSIE [17-9]\" ssl-unclean-shutdown
     </VirtualHost>
 </IfModule>
