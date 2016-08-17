@@ -39,69 +39,23 @@ a2enmod ssl
 mkdir /etc/apache2/ssl
 openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.site.dev" -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
 
-# Creating folder
-echo "#######################################"
-echo "####### SITE FOLDER PERMISSIONS #######"
-echo "#######################################"
-mkdir /var/www/html/site
-chmod 0777 -R /var/www/html/site
-
 # enable modrewrite
 echo "#######################################"
 echo "##### ENABLING APACHE MOD-REWRITE #####"
 echo "#######################################"
 a2enmod rewrite
 
-# append AllowOverride to Apache Config File
+# ServerName
 echo "#######################################"
-echo "##### CREATING APACHE CONFIG FILE #####"
+echo "######### APACHE ServerName ###########"
 echo "#######################################"
-echo "
-<VirtualHost *:80>
-        ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html/site
-		ServerName site.dev
-		ServerAlias www.site.dev
-
-		<Directory '/var/www/html/site'>
-			Options Indexes FollowSymLinks MultiViews
-			AllowOverride All
-			Order allow,deny
-			allow from all
-		</Directory>
-</VirtualHost>
-
-<IfModule mod_ssl.c>
-    <VirtualHost *:443>
-        ServerAdmin webmaster@localhost
-        ServerName site.dev
-        ServerAlias www.site.dev
-
-        DocumentRoot /var/www/html/site
-
-        SSLEngine on
-        SSLCertificateFile /etc/apache2/ssl/apache.crt
-        SSLCertificateKeyFile /etc/apache2/ssl/apache.key
-
-        <FilesMatch \"\.(cgi|shtml|phtml|php)$\">
-                SSLOptions +StdEnvVars
-        </FilesMatch>
-        <Directory /usr/lib/cgi-bin>
-                SSLOptions +StdEnvVars
-        </Directory>
-        BrowserMatch \"MSIE [2-6]\" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
-        BrowserMatch \"MSIE [17-9]\" ssl-unclean-shutdown
-    </VirtualHost>
-</IfModule>
-" > /etc/apache2/sites-available/site.conf
-
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Enabling Site
-echo "##################################"
-echo "######### Enabling Site ##########"
-echo "##################################"
-a2ensite site.conf
+# Creating folder
+echo "#######################################"
+echo "####### SITE FOLDER PERMISSIONS #######"
+echo "#######################################"
+sh /var/www/html/sitemanager.sh -c site
 
 # Setting Locales
 echo "###########################"
