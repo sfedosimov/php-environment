@@ -33,7 +33,7 @@ After Vagrant and Virtualbox are setup, run the following commands to install th
     git clone https://github.com/sfedosimov/php-environment.git
 **Navigate to the folder**
 
-    cd /path/to/site/
+    cd /path/to/project/
 
 **Run Vagrant Command**
 
@@ -44,5 +44,41 @@ After Vagrant and Virtualbox are setup, run the following commands to install th
     Database Username: root
     Database Password: (none)
     Database Name: site
-    URL of Instance: http://192.168.33.10/site/
-    Host File Configuration: 192.168.33.10 www.site.dev site.dev
+    Host File Configuration: 192.168.99.99 www.site.dev site.dev
+    URL of Instance: http://site.dev/
+    
+**Scripts**
+
+    # create new vhost and folder for it
+    sudo sh /var/www/html/sitemanager.sh -c newsite
+    
+    # delete vhost and folder for it
+    sudo sh /var/www/html/sitemanager.sh -d newsite
+
+**Installed soft**
+
+PHP 5.6:
+
+ + php5-mcrypt
+ + php5-curl
+ + php5-cli
+ + php5-mysqlnd
+ + php5-gd
+ + php5-intl
+ + php5-common
+ + php-pear
+ + php5-dev
+ + php5-xsl
+
+PECL:
+
+ + xdebug
+ 
+ 
+MYSQL 5.6
+
+APACHE 2.4 (with ssl
+
+POSTFIX 2.11
+
+HTOP
