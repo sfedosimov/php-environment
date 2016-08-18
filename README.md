@@ -81,4 +81,8 @@ APACHE 2.4 (with ssl
 
 POSTFIX 2.11
 
+GIT
+
+COMPOSER
+
 HTOP
