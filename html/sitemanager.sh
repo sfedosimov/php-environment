@@ -15,7 +15,7 @@ if [ -z "$2" ]; then
     exit
 fi
 
-if [ $1 == "-c" ]; then
+if [ "$1" = "-c" ]; then
     mkdir /var/www/html/$2
     echo "
         <VirtualHost *:80>
@@ -56,7 +56,7 @@ if [ $1 == "-c" ]; then
         </IfModule>
     " > /etc/apache2/sites-available/$2.conf
     a2ensite $2.conf
-elif [ $1 == "-d" ]; then
+elif [ "$1" = "-d" ]; then
     read -p "Are you sure? [y/n]" -n 1 -r
     echo # (optional) move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
