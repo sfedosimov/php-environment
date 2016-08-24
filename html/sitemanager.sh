@@ -29,6 +29,9 @@ if [ "$1" = "-c" ]; then
                 AllowOverride All
                 Order allow,deny
                 allow from all
+                # magento config
+                # SetEnvIf Host ^$2\.dev$ MAGE_RUN_CODE=$2
+                SetEnv MAGE_IS_DEVELOPER_MODE \"true\"
             </Directory>
         </VirtualHost>
 
@@ -47,8 +50,14 @@ if [ "$1" = "-c" ]; then
                 <FilesMatch \"\.(cgi|shtml|phtml|php)$\">
                         SSLOptions +StdEnvVars
                 </FilesMatch>
-                <Directory /usr/lib/cgi-bin>
-                        SSLOptions +StdEnvVars
+                <Directory '/var/www/html/$2'>
+                    Options Indexes FollowSymLinks MultiViews
+                    AllowOverride All
+                    Order allow,deny
+                    allow from all
+                    # magento config
+                    # SetEnvIf Host ^$2\.dev$ MAGE_RUN_CODE=$2
+                    SetEnv MAGE_IS_DEVELOPER_MODE \"true\"
                 </Directory>
                 BrowserMatch \"MSIE [2-6]\" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
                 BrowserMatch \"MSIE [17-9]\" ssl-unclean-shutdown
