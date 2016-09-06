@@ -80,13 +80,15 @@ apt-get -q -y install mysql-server-5.6 mysql-client-5.6
 echo "####################################################################"
 echo "######################### CONFIGURE MYSQL ##########################"
 echo "####################################################################"
+sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 echo "wait_timeout = 600" >> /etc/mysql/my.cnf
 
-# Create Database instance
+# Create Database instance and global root user
 echo "####################################################################"
-echo "######################### CREATING DATABASE ########################"
+echo "############## CREATING DATABASE & ADD % TO ROOT ###################"
 echo "####################################################################"
 mysql -u root -e "create database site;"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '';"
 
 # Install PHP 5.6
 echo "####################################################################"

@@ -24,6 +24,12 @@ if [ "$1" = "-c" ]; then
             ServerName $2.dev
             ServerAlias www.$2.dev
 
+            LogLevel notice
+            ErrorLog \${APACHE_LOG_DIR}/error-$2.dev.log
+
+            LogFormat \"%l %t \\\"%r\\\" %>s %b %D\" common
+            CustomLog \${APACHE_LOG_DIR}/access-$2.dev.log common
+
             <Directory '/var/www/html/$2'>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride All
@@ -40,6 +46,12 @@ if [ "$1" = "-c" ]; then
                 ServerAdmin webmaster@localhost
                 ServerName $2.dev
                 ServerAlias www.$2.dev
+
+                LogLevel notice
+                ErrorLog \${APACHE_LOG_DIR}/error-$2.dev.log
+
+                LogFormat \"%l %t \\\"%r\\\" %>s %b %D\" common
+                CustomLog \${APACHE_LOG_DIR}/access-$2.dev.log common
 
                 DocumentRoot /var/www/html/$2
 
