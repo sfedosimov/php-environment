@@ -6,7 +6,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 if [ -z "$1" ]; then
-    echo "Please pass an action"
+    printf "./sitemanager.sh -c site\n./sitemanager.sh -d site --with-db\n\n\t -c \t create \n \t -d \t delete \n \t --with-db \t delete site with it db\n\n"
     exit
 fi
 
@@ -16,7 +16,19 @@ if [ -z "$2" ]; then
 fi
 
 if [ "$1" = "-c" ]; then
+
+    if [[ -e "$2" ]]; then
+        echo "Directory $2 already exist!"
+        exit
+    fi
+
     mkdir /var/www/html/$2
+
+    if [[ -e "/etc/apache2/sites-available/$2.conf" ]]; then
+        echo "VHost /etc/apache2/sites-available/$2.conf already exist!"
+        exit
+    fi
+
     echo "
         <VirtualHost *:80>
             ServerAdmin webmaster@localhost
@@ -77,14 +89,20 @@ if [ "$1" = "-c" ]; then
         </IfModule>
     " > /etc/apache2/sites-available/$2.conf
     a2ensite $2.conf
+    mysql -u root -e "create database $2;"
 elif [ "$1" = "-d" ]; then
-    read -p "Are you sure? [y/n]" -n 1 -r
+    read -p "Are you sure: delete all item of the \"$2\"? [y/n]" -n 1 -r
     echo # (optional) move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         a2dissite $2.conf
         rm -f /etc/apache2/sites-available/$2.conf
         rm -rf /var/www/html/$2
+
+        if [[ "$3" = "--with-db" ]]
+        then
+            mysql -u root -e "drop database $2;"
+        fi
     fi
     echo "success!"
     echo # (optional) move to a new line
