@@ -107,7 +107,7 @@ echo "max_execution_time = 600" >> /etc/php5/apache2/php.ini
 echo "####################################################################"
 echo "###################### INSTALLING PHP EXTENSIONS ###################"
 echo "####################################################################"
-apt-get -y install php5-mhash php5-mcrypt php5-curl php5-cli php5-mysqlnd php5-gd php5-intl php5-common php-pear php5-dev php5-xsl
+apt-get -y install php5-mhash php5-mcrypt php5-curl php5-cli php5-mysqlnd php5-gd php5-intl php5-common php-pear php5-dev php5-xsl php5-xdebug
 
 # Mcrypt issue
 echo "####################################################################"
@@ -128,13 +128,7 @@ echo "########################### CONFIGURE PECL #########################"
 echo "####################################################################"
 pear config-set php_ini /etc/php5/apache2/php.ini
 
-# Install Xdebug
-echo "####################################################################"
-echo "########################## INSTALL XDEBUG ##########################"
-echo "####################################################################"
-pecl install xdebug
-
-# Install Pecl Config variables
+# Config xdebug
 echo "####################################################################"
 echo "######################### CONFIGURE XDEBUG #########################"
 echo "####################################################################"
