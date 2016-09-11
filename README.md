@@ -50,10 +50,16 @@ After Vagrant and Virtualbox are setup, run the following commands to install th
 **Scripts**
 
     # create new vhost and folder for it
-    sudo sh /var/www/html/sitemanager.sh -c newsite
+    sudo site-manager -c newsite
     
     # delete vhost and folder for it
-    sudo sh /var/www/html/sitemanager.sh -d newsite
+    sudo site-manager -d newsite
+    
+    # create backup site
+    # -d = database
+    # -f = project folder
+    # siteName = site name from site-manager
+    site-backup -df /path/to/backupdir siteName
 
 **Installed soft**
 
