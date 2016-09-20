@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-var HTTP_PATH = "/var/www/html"
+HTTP_PATH = "/var/www/html"
 
 # Edit PS1
 echo "####################################################################"
