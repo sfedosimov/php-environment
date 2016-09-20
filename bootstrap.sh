@@ -59,10 +59,10 @@ apt-get -y install dos2unix
 echo "####################################################################"
 echo "############################ TOOLS #################################"
 echo "####################################################################"
-dos2unix ${HTTP_PATH}/sitemanager.sh
-dos2unix ${HTTP_PATH}/backup.sh
-mv ${HTTP_PATH}/sitemanager.sh /usr/local/bin/site-manager
-mv ${HTTP_PATH}/backup.sh /usr/local/bin/site-backuper
+dos2unix $HTTP_PATH/sitemanager.sh
+dos2unix $HTTP_PATH/backup.sh
+mv $HTTP_PATH/sitemanager.sh /usr/local/bin/site-manager
+mv $HTTP_PATH/backup.sh /usr/local/bin/site-backuper
 
 # Creating and configuring vhost
 echo "####################################################################"
@@ -168,9 +168,9 @@ apt-get -y install postfix
 echo "####################################################################"
 echo "################## SETTING OWNERSHIP AND PERMISSIONS ###############"
 echo "####################################################################"
-chown -R www-data ${HTTP_PATH}/site/
-find ${HTTP_PATH}/site/ -type d -exec chmod 700 {} \;
-find ${HTTP_PATH}/site/ -type f -exec chmod 600 {} \;
+chown -R www-data $HTTP_PATH/site/
+find $HTTP_PATH/site/ -type d -exec chmod 700 {} \;
+find $HTTP_PATH/site/ -type f -exec chmod 600 {} \;
 
 # Restart apache
 echo "####################################################################"
