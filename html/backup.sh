@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 USAGE="Usage: `basename $0` [-bf] [-d dir] sitename"
 DB=false
