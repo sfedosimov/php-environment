@@ -97,6 +97,7 @@ echo "############## CREATING DATABASE & ADD % TO ROOT ###################"
 echo "####################################################################"
 mysql -u root -e "create database site;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '';"
+service mysql restart
 
 # Install PHP 5.6
 echo "####################################################################"
@@ -110,6 +111,7 @@ echo "########################## CONFIGURE PHP ###########################"
 echo "####################################################################"
 echo "memory_limit = 1024M" >> /etc/php5/apache2/php.ini
 echo "max_execution_time = 600" >> /etc/php5/apache2/php.ini
+echo "always_populate_raw_post_data = -1" >> /etc/php5/apache2/php.ini
 
 # Install Required PHP extensions
 echo "####################################################################"
